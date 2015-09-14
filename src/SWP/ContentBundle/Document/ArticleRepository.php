@@ -11,10 +11,11 @@
  * @copyright 2015 Sourcefabric z.ú.
  * @license http://www.superdesk.org/license
  */
+
 namespace SWP\ContentBundle\Document;
 
-use Doctrine\ODM\PHPCR\Id\RepositoryIdInterface;
 use Doctrine\ODM\PHPCR\DocumentRepository as BaseDocumentRepository;
+use Doctrine\ODM\PHPCR\Id\RepositoryIdInterface;
 
 class ArticleRepository extends BaseDocumentRepository implements RepositoryIdInterface
 {
