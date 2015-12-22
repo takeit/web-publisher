@@ -11,6 +11,7 @@
  * @copyright 2015 Sourcefabric z.ú.
  * @license http://www.superdesk.org/license
  */
+
 namespace SWP\WebRendererBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -23,7 +24,6 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      * @Method("GET")
-     * @Cache(expires="+ 5 min", public=true)
      */
     public function indexAction()
     {

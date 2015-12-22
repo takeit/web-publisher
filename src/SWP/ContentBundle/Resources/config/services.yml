@@ -10,12 +10,3 @@ services:
 
     document_manager:
         alias: doctrine_phpcr.odm.document_manager
-
-    swp_template_engine.twig.extension.content:
-        class: SWP\ContentBundle\Twig\Extension\ContentExtension
-        public: false
-        arguments:
-            - @doctrine
-            - @router
-        tags:
-            - { name: twig.extension }
