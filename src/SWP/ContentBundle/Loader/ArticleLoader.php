@@ -11,7 +11,6 @@
  * @copyright 2015 Sourcefabric z.ú.
  * @license http://www.superdesk.org/license
  */
-
 namespace SWP\ContentBundle\Loader;
 
 use SWP\TemplatesSystem\Gimme\Loader\LoaderInterface;
@@ -70,7 +69,7 @@ class ArticleLoader implements LoaderInterface
         if ($responseType === LoaderInterface::SINGLE) {
             if (array_key_exists('contentPath', $parameters)) {
                 $article = $this->dm->find('SWP\ContentBundle\Document\Article', $parameters['contentPath']);
-            } else if (array_key_exists('article', $parameters)) {
+            } elseif (array_key_exists('article', $parameters)) {
                 $article = $parameters['article'];
             } elseif (array_key_exists('slug', $parameters)) {
                 $article = $this->dm->getRepository('SWP\ContentBundle\Document\Article')
@@ -82,7 +81,7 @@ class ArticleLoader implements LoaderInterface
             }
         } elseif ($responseType === LoaderInterface::COLLECTION) {
             if (array_key_exists('route', $parameters)) {
-                $route = $this->dm->find(null, '/swp/routes'.$parameters['route']);
+                $route = $this->dm->find(null, '/swp/default/routes'.$parameters['route']);
                 if ($route) {
                     $articles = $this->dm->getReferrers($route, null, null, null, 'SWP\ContentBundle\Document\Article');
 

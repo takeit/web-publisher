@@ -11,15 +11,13 @@
  * @copyright 2015 Sourcefabric z.ú.
  * @license http://www.superdesk.org/license
  */
-
 namespace SWP\WebRendererBundle\Routing;
 
 use Symfony\Cmf\Bundle\RoutingBundle\Routing\DynamicRouter;
-use Symfony\Cmf\Component\Routing\VersatileGeneratorInterface;
 use SWP\TemplatesSystem\Gimme\Meta\Meta;
 use SWP\ContentBundle\Document\Article;
 
-class MetaRouter extends DynamicRouter implements VersatileGeneratorInterface
+class MetaRouter extends DynamicRouter
 {
     /**
      * {@inheritdoc}
@@ -40,10 +38,6 @@ class MetaRouter extends DynamicRouter implements VersatileGeneratorInterface
      */
     public function supports($name)
     {
-        if ($name instanceof Meta) {
-            return true;
-        }
-
-        return parent::supports($name);
+        return $name instanceof Meta;
     }
 }
