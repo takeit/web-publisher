@@ -11,7 +11,6 @@
  * @copyright 2016 Sourcefabric z.ú.
  * @license http://www.superdesk.org/license
  */
-
 namespace spec\SWP\Bundle\WebRendererBundle\Twig;
 
 use PhpSpec\ObjectBehavior;
@@ -20,6 +19,9 @@ use Sylius\Bundle\ThemeBundle\Context\ThemeContextInterface;
 use Sylius\Bundle\ThemeBundle\Model\ThemeInterface;
 use Twig_Extension;
 
+/**
+ * @mixin WebRendererExtension
+ */
 class WebRendererExtensionSpec extends ObjectBehavior
 {
     function let(ThemeContextInterface $themeContext)
@@ -45,7 +47,7 @@ class WebRendererExtensionSpec extends ObjectBehavior
         $themeContext->getTheme()->shouldBeCalled()->willReturn($theme);
 
         $globals = [
-            'theme' => $theme
+            'theme' => $theme,
         ];
 
         $this->getGlobals()->shouldReturn($globals);

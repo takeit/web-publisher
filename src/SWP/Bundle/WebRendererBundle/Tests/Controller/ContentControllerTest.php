@@ -15,7 +15,6 @@
 namespace SWP\Bundle\WebRendererBundle\Tests\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
-use Symfony\Component\Filesystem\Filesystem;
 
 class ContentControllerTest extends WebTestCase
 {

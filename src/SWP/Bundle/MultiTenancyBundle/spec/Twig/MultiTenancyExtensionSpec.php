@@ -11,7 +11,6 @@
  * @copyright 2016 Sourcefabric z.ú.
  * @license http://www.superdesk.org/license
  */
-
 namespace spec\SWP\Bundle\MultiTenancyBundle\Twig;
 
 use PhpSpec\ObjectBehavior;
@@ -20,6 +19,9 @@ use SWP\Component\MultiTenancy\Context\TenantContextInterface;
 use SWP\Component\MultiTenancy\Model\TenantInterface;
 use Twig_Extension;
 
+/**
+ * @mixin MultiTenancyExtension
+ */
 class MultiTenancyExtensionSpec extends ObjectBehavior
 {
     function let(TenantContextInterface $tenantContext)
@@ -44,7 +46,7 @@ class MultiTenancyExtensionSpec extends ObjectBehavior
         $tenantContext->getTenant()->shouldBeCalled()->willReturn($tenant);
 
         $globals = [
-            'organization' => $tenant
+            'organization' => $tenant,
         ];
 
         $this->getGlobals()->shouldReturn($globals);
