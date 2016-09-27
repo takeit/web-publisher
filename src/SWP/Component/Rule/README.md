@@ -1,5 +1,5 @@
 Rule Component [![Build Status](https://travis-ci.org/SuperdeskWebPublisher/rule.svg?branch=master)](https://travis-ci.org/SuperdeskWebPublisher/rule)
-==============
+======================================================================================================================================================
 
 This component provides basic business rules engine tools.
 
