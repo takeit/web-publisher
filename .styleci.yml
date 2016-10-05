@@ -1,4 +1,1 @@
 preset: symfony
-
-enabled:
-    - single_blank_line_before_namespace
