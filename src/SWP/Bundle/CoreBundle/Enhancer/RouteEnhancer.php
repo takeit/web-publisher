@@ -131,6 +131,7 @@ class RouteEnhancer implements RouteEnhancerInterface
         } else {
             $defaults[RouteObjectInterface::TEMPLATE_NAME] = $this->templateNameResolver->resolve($route);
         }
+
         return $defaults;
     }
 
