@@ -51,7 +51,7 @@ interface ArticleRepositoryInterface extends RepositoryInterface
      * @param Criteria $criteria
      * @param array    $sorting
      *
-     * @return QueryBuilder
+     * @return mixed
      */
-    public function getByCriteria(Criteria $criteria, array $sorting): QueryBuilder;
+    public function getByCriteria(Criteria $criteria, array $sorting);
 }
