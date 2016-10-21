@@ -59,6 +59,7 @@ class TenantTypeSpec extends ObjectBehavior
                 'required' => true,
                 'description' => 'Tenant subdomain',
                 'constraints' => [
+                    new NotBlank(),
                     new Length(['min' => 3]),
                 ],
             ])
@@ -70,7 +71,6 @@ class TenantTypeSpec extends ObjectBehavior
                 'required' => false,
                 'description' => 'Tenant domain name',
                 'constraints' => [
-                    new NotBlank(),
                     new Length(['min' => 3]),
                 ],
             ])->willReturn($builder)
