@@ -62,7 +62,7 @@ class RouteServiceSpec extends ObjectBehavior
 
         $route->setVariablePattern(null)->shouldBeCalled();
         $route->setRequirements([])->shouldBeCalled();
-        $route->setStaticPrefix("/test-name")->shouldBeCalled();
+        $route->setStaticPrefix('/test-name')->shouldBeCalled();
 
         $eventDispatcher->dispatch(
             RouteEvents::POST_CREATE,
@@ -90,7 +90,7 @@ class RouteServiceSpec extends ObjectBehavior
         $route->setVariablePattern(Argument::exact('/{slug}'))->shouldBeCalled();
         $route->setRequirement(Argument::exact('slug'), Argument::exact('[a-zA-Z0-9*\-_\/]+'))->shouldBeCalled();
         $route->setDefault('slug', null)->shouldBeCalled();
-        $route->setStaticPrefix("/test-name")->shouldBeCalled();
+        $route->setStaticPrefix('/test-name')->shouldBeCalled();
 
         $eventDispatcher->dispatch(
             RouteEvents::POST_CREATE,
@@ -117,7 +117,7 @@ class RouteServiceSpec extends ObjectBehavior
         $route->setVariablePattern(Argument::exact('/{slug}'))->shouldBeCalled();
         $route->setRequirement(Argument::exact('slug'), Argument::exact('[a-zA-Z0-9*\-_\/]+'))->shouldBeCalled();
         $route->setDefault('slug', null)->shouldBeCalled();
-        $route->setStaticPrefix("/test-name")->shouldBeCalled();
+        $route->setStaticPrefix('/test-name')->shouldBeCalled();
 
         $eventDispatcher->dispatch(
             RouteEvents::POST_UPDATE,

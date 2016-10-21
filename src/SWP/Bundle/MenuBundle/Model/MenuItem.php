@@ -533,6 +533,7 @@ class MenuItem implements MenuItemInterface
     {
         return $this->children->first();
     }
+
     /**
      * {@inheritdoc}
      */
