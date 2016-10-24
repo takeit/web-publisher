@@ -33,13 +33,12 @@ class MetaRouter extends DynamicRouter
      */
     public function generate($name, $parameters = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
     {
-        $route = $name;
-        $cacheKey = $this->getCacheKey($route, $parameters, $referenceType);
+        $cacheKey = $this->getCacheKey($name, $parameters, $referenceType);
         if (array_key_exists($cacheKey, $this->internalRoutesCache)) {
             return $this->internalRoutesCache[$cacheKey];
         }
 
-        if ($route instanceof Meta && $name->getValues() instanceof ArticleInterface) {
+        if ($name instanceof Meta && $name->getValues() instanceof ArticleInterface) {
             $parameters['slug'] = $name->getValues()->getSlug();
             $route = $name->getValues()->getRoute();
 
@@ -47,9 +46,11 @@ class MetaRouter extends DynamicRouter
                 $parameters['slug'] = null;
                 $route = $name->getContext()->getCurrentPage()->getValues();
             }
-        } elseif ($route instanceof Meta && $name->getValues() instanceof RouteInterface) {
+        } elseif ($name instanceof Meta && $name->getValues() instanceof RouteInterface) {
             $route = $name->getValues();
-        } elseif ($route instanceof RouteInterface) {
+        } elseif ($name instanceof RouteInterface) {
+            $route = $name;
+        } elseif (is_string($name)) {
             $route = $name;
         }
 
