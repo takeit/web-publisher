@@ -1,3 +1,4 @@
+
 {
     "name": "superdesk/web-publisher",
     "description": "Superdesk Web Publisher - the next generation publishing platform for journalists and newsrooms.",
@@ -15,7 +16,7 @@
         "news",
         "media"
     ],
-     "authors": [
+    "authors": [
         {
             "name": "Paweł Mikołajczuk",
             "email": "mikolajczuk.private@gmail.com"
@@ -41,7 +42,7 @@
             "SWP\\Bridge\\": "src/SWP/Bridge/"
         },
         "exclude-from-classmap": [ "**/Tests/", "**/spec/" ]
-   ,    "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
+    ,    "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "repositories": [
         {

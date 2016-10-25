@@ -204,8 +204,8 @@ class ThemeGenerateCommand extends ContainerAwareCommand
         array_unshift($values, sprintf('swp/%s', $themeName));
 
         $contents =
-<<<'EOT'
-{
+            <<<'EOT'
+            {
     "name": "%s",
     "title": "%s",
     "description": "%s",
