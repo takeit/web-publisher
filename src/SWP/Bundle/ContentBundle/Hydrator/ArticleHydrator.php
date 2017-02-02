@@ -111,12 +111,22 @@ final class ArticleHydrator implements ArticleHydratorInterface
      */
     protected function populateByline(PackageInterface $package)
     {
+        $items = $package->getItems()->filter(
+            function (ItemInterface $item) {
+                $this->ensureTypeIsAllowed($item->getType());
+                if (ItemInterface::TYPE_TEXT === $item->getType()) {
+                    return true;
+                }
+
+                return false;
+            }
+        );
+
         $authors = array_filter(array_values(array_map(function (ItemInterface $item) {
-            $this->ensureTypeIsAllowed($item->getType());
             $metadata = $item->getMetadata();
 
             return $metadata['byline'];
-        }, $package->getItems()->toArray())));
+        }, $items->toArray())));
 
         if (empty($authors)) {
             return $package->getByLine();
