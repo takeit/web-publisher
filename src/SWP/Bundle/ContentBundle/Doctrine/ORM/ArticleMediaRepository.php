@@ -18,6 +18,7 @@ namespace SWP\Bundle\ContentBundle\Doctrine\ORM;
 
 use Doctrine\ORM\QueryBuilder;
 use SWP\Bundle\ContentBundle\Doctrine\ArticleMediaRepositoryInterface;
+use SWP\Bundle\ContentBundle\Model\ArticleInterface;
 use SWP\Component\Common\Criteria\Criteria;
 use SWP\Bundle\StorageBundle\Doctrine\ORM\EntityRepository;
 
@@ -31,6 +32,16 @@ class ArticleMediaRepository extends EntityRepository implements ArticleMediaRep
         $qb = $this->getQueryByCriteria($criteria, $sorting, 'am');
 
         return $qb;
+    }
+
+    public function removeExistingArticleMedia(ArticleInterface $article)
+    {
+        $queryBuilder = $this->createQueryBuilder('am')
+            ->delete()
+            ->where('am.article = :article')
+            ->setParameter('article', $article->getId());
+
+        $queryBuilder->getQuery()->execute();
     }
 
     /**

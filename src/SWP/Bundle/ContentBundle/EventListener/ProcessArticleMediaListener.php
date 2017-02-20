@@ -71,9 +71,11 @@ class ProcessArticleMediaListener
             return;
         }
 
-        $this->removeOldArticleMedia($article);
+        $this->articleMediaRepository->removeExistingArticleMedia($article);
         foreach ($package->getItems() as $key => $packageItem) {
+
             if (ItemInterface::TYPE_PICTURE === $packageItem->getType() || ItemInterface::TYPE_FILE === $packageItem->getType()) {
+
                 $this->removeArticleMediaIfNeeded($key, $article);
 
                 $articleMedia = $this->handleMedia($article, $key, $packageItem);
@@ -121,14 +123,15 @@ class ProcessArticleMediaListener
      */
     private function removeOldArticleMedia(ArticleInterface $article)
     {
-        $existingArticleMedia = $this->articleMediaRepository->findBy([
+        $this->articleMediaRepository->removeMedia($article);
+        /*$existingArticleMedia = $this->articleMediaRepository->findBy([
             'article' => $article->getId(),
         ]);
 
         foreach ($existingArticleMedia as $articleMedia) {
             $this->articleMediaRepository->remove($articleMedia);
-        }
-        $this->articleMediaRepository->flush();
+        }*/
+        //$this->articleMediaRepository->flush();
     }
 
     /**
@@ -137,6 +140,7 @@ class ProcessArticleMediaListener
      */
     private function removeArticleMediaIfNeeded($key, ArticleInterface $article)
     {
+        /** @var ArticleMediaInterface $existingArticleMedia */
         $existingArticleMedia = $this->articleMediaRepository->findOneBy([
             'key' => $key,
             'article' => $article->getId(),
