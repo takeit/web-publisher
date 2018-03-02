@@ -42,7 +42,7 @@ class Version20180118194100 extends AbstractMigration implements ContainerAwareI
         $this->container->get('event_dispatcher')->dispatch(MultiTenancyEvents::TENANTABLE_DISABLE);
 
         $articles = $entityManager
-            ->createQuery('SELECT a FROM SWP\Bundle\CoreBundle\Model\Article a')
+            ->createQuery('SELECT a FROM SWP\Bundle\ContentBundle\Model\Article a')
             ->getArrayResult();
 
 
