@@ -45,9 +45,13 @@ class Version20180118194100 extends AbstractMigration implements ContainerAwareI
             ->createQuery('SELECT partial a.{id,tenantCode}, es FROM SWP\Bundle\CoreBundle\Model\Article a LEFT JOIN a.articleStatistics es')
             ->getArrayResult();
 
+        if (empty($articles)) {
+            return;
+        }
+
         /* @var ArticleInterface $article */
         foreach ($articles as $article) {
-            if (isset($article['articleStatistics'])) {
+            if (null !== $article['articleStatistics']) {
                 continue;
             }
 
@@ -56,6 +60,7 @@ class Version20180118194100 extends AbstractMigration implements ContainerAwareI
             $articleStatistics->setTenantCode($article['tenantCode']);
             $this->container->get('doctrine')->getManager()->persist($articleStatistics);
         }
+
         $this->container->get('doctrine')->getManager()->flush();
     }
 
