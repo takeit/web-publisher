@@ -46,7 +46,9 @@ class Version20180118194100 extends AbstractMigration implements ContainerAwareI
             return;
         }
 
-        $articles = $this->container->get('swp.repository.article')->findAll();
+        $articles = $this->container->get('doctrine.orm.default_entity_manager')
+            ->createQuery('SELECT a FROM SWP\Bundle\CoreBundle\Model\Article a')
+            ->getResult();
 
         /* @var ArticleInterface $article */
         foreach ($articles as $article) {
