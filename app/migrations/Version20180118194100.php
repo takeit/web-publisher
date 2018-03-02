@@ -43,19 +43,17 @@ class Version20180118194100 extends AbstractMigration implements ContainerAwareI
 
         $articles = $entityManager
             ->createQuery('SELECT a FROM SWP\Bundle\ContentBundle\Model\Article a')
-            ->getArrayResult();
-
-
+            ->getScalarResult();
 
         /* @var ArticleInterface $article */
         foreach ($articles as $article) {
-            if (isset($article['articleStatistics']) && null !== $article['articleStatistics']) {
+            if (isset($article['a_articleStatistics']) && null !== $article['a_articleStatistics']) {
                 continue;
             }
 
             $articleStatistics = new ArticleStatistics();
-            $articleStatistics->setArticle($entityManager->getReference(Article::class, $article['id']));
-            $articleStatistics->setTenantCode($article['tenantCode']);
+            $articleStatistics->setArticle($entityManager->getReference(Article::class, $article['a_id']));
+            $articleStatistics->setTenantCode($article['a_tenantCode']);
             $this->container->get('doctrine')->getManager()->persist($articleStatistics);
         }
         $this->container->get('doctrine')->getManager()->flush();
