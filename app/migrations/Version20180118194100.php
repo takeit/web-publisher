@@ -42,18 +42,18 @@ class Version20180118194100 extends AbstractMigration implements ContainerAwareI
         $this->container->get('event_dispatcher')->dispatch(MultiTenancyEvents::TENANTABLE_DISABLE);
 
         $articles = $entityManager
-            ->createQuery('SELECT a FROM SWP\Bundle\ContentBundle\Model\Article a')
-            ->getScalarResult();
+            ->createQuery('SELECT partial a.{id,tenantCode}, es FROM SWP\Bundle\CoreBundle\Model\Article a LEFT JOIN a.articleStatistics es')
+            ->getArrayResult();
 
         /* @var ArticleInterface $article */
         foreach ($articles as $article) {
-            if (isset($article['a_articleStatistics']) && null !== $article['a_articleStatistics']) {
+            if (isset($article['articleStatistics'])) {
                 continue;
             }
 
             $articleStatistics = new ArticleStatistics();
-            $articleStatistics->setArticle($entityManager->getReference(Article::class, $article['a_id']));
-            $articleStatistics->setTenantCode($article['a_tenantCode']);
+            $articleStatistics->setArticle($entityManager->getReference(Article::class, $article['id']));
+            $articleStatistics->setTenantCode($article['tenantCode']);
             $this->container->get('doctrine')->getManager()->persist($articleStatistics);
         }
         $this->container->get('doctrine')->getManager()->flush();
