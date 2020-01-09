@@ -222,7 +222,6 @@ services:
             - "@swp_multi_tenancy.tenant_context"
             - "@swp.repository.tenant"
             - "@event_dispatcher"
-            - "@security.helper"
 
     swp.security.preview_token_authenticator:
         class: SWP\Bundle\CoreBundle\Security\Authenticator\PreviewTokenAuthenticator
@@ -766,3 +765,6 @@ services:
 
     SWP\Bundle\CoreBundle\Hydrator\PackageHydratorInterface:
         alias: SWP\Bundle\CoreBundle\Hydrator\PackageHydrator
+
+    SWP\Bundle\CoreBundle\GeoIp\CachedGeoIpChecker:
+        autowire: true
