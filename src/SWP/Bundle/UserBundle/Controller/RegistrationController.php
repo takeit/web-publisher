@@ -103,6 +103,7 @@ class RegistrationController extends AbstractController
 
             $signatureComponents = $this->emailVerifier->getSignatureComponents('swp_user_verify_email', $user);
             $url = $signatureComponents->getSignedUrl();
+
             $mailer->sendConfirmationEmail($user, $url);
 
             return new JsonResponse([
